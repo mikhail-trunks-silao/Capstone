@@ -10,13 +10,42 @@
     </head>
     <body>
         <h1>Admin Sign-up</h1>
-        <form action= "./script/script.sign-up.php" method= "post">
-            <input type="email" name="email" placeholder="Email...">
-            <input type="text" name="fname" placeholder="First name...">
-            <input type="text" name="lname" placeholder="Last name...">
-            <input type="password" name="password" placeholder="Password">
-            <button type="submit" name="sign-up-submit">Sign-up</button>
-        </form>
+        <?php
+            if(isset($_GET['error'])){
+                if($_GET['error'] == "emptyfields"){
+                    echo '<p>Fill in all fields!</p>';
+                }
+                else if($_GET['error'] == "invalidemailfname"){
+                    echo '<p>Invalid email and first name!</p>';
+                }
+                else if($_GET['error'] == "invalidemail"){
+                    echo '<p>Invalid email!</p>';
+                }
+                else if($_GET['error'] == "invalidfname"){
+                    echo '<p>Invalid first name!</p>';
+                }
+                else if($_GET['error'] == "invalidlname"){
+                    echo '<p>Invalid last name!</p>';
+                }
+                else if($_GET['error'] == "emailtaken"){
+                    echo '<p>Email is already taken!</p>';
+                }
+            } else if(isset($_GET['signup'])){
+                if($_GET['signup'] == "success"){
+                    echo '<p>Sign-up successful!</p>';
+                }
+            }
+            
+        ?>
+        <ul>
+            <form action= "./script/script.sign-up.php" method= "post">
+                <li><input type="email" name="email" placeholder="Email..."></li>
+                <li><input type="text" name="fname" placeholder="First name..."></li>
+                <li><input type="text" name="lname" placeholder="Last name..."></li>
+                <li><input type="password" name="password" placeholder="Password"></li>
+                <li><button type="submit" name="sign-up-submit">Sign-up</button></li>
+            </form>
+        </ul>
         <a href="./log-in.php">Log-in</a>
         <script src="" async defer></script>
     </body>
